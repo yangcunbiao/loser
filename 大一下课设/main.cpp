@@ -4,10 +4,10 @@ int main() {
 	long int time = 0;
 	int a = 0, j = 1;
 	long int Time = 0;
-	cout << "ÇëÊäÈëÊ±ÖÓÖÕÖµ:";
+	cout << "è¯·è¾“å…¥æ—¶é’Ÿç»ˆå€¼:";
 	cin >> Time;
 	cout << endl;
-	cout << "ÇëÊäÈë¹²ÓÐ¼¸Î»³Ë¿ÍÊ¹ÓÃµçÌÝ£º";
+	cout << "è¯·è¾“å…¥å…±æœ‰å‡ ä½ä¹˜å®¢ä½¿ç”¨ç”µæ¢¯ï¼š";
 	cin >> a;
 	passenger* people = new passenger[a + 1];
 	for (int i = 1; i < a + 1; i++) {
@@ -19,11 +19,11 @@ int main() {
 		if (people[b].getwhenwait() > Time)Time = people[b].getwhenwait();
 	}
 	for (; time < Time; time++) {
-		cout << time << "tÊ±¿Ì  ";
+		cout << time << "tæ—¶åˆ»  ";
 		for (int i = 1; i < a + 1; i++) {
 			if (people[i].getwhenwait() == time)x.addpassenger(people[i]);
 		}
-		cout << "µçÌÝÔÚ" << ((x.getfloor()==1)?(-1):(x.getfloor()-1)) << "²ã  ";
+		cout << "ç”µæ¢¯åœ¨" << ((x.getfloor()==1)?(-1):(x.getfloor()-1)) << "å±‚  ";
 		x.JudgeGiveUp(time);
 		cout << endl;
 	}
