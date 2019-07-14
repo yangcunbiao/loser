@@ -40,31 +40,31 @@ private:
 	PNODE Wait = p_head;
 	int DiantiLi[10] = { 0 };
 	int All = 0;
-	int Dir = -1;//ÅĞ¶ÏÉÏÏÂµÄÇé¿ö
+	int Dir = -1;//åˆ¤æ–­ä¸Šä¸‹çš„æƒ…å†µ
 public:
 	state getnowState()const;
 	void setnowState(state t);
 	int getfloor()const;
 	void setfloor(int floor1);
 	int getAll()const;
-	void setAll(int num);//numÎªÍâ²¿ÉÏµçÌİµÄÈËÊı
+	void setAll(int num);//numä¸ºå¤–éƒ¨ä¸Šç”µæ¢¯çš„äººæ•°
 	int getDir()const;
 	void setDir(int x);
-	void addpassenger(const passenger& x);//Ìí¼Ó³Ë¿Í
-	bool NoPassenger();//ÅĞ¶ÏÊÇ·ñÓĞ³Ë¿ÍÇëÇó
-	void JudgeDirction();//ÅĞ¶ÏµçÌİĞĞ×ß·½Ïò
-	bool JudgeOpen();//ÅĞ¶ÏÊÇ·ñ¿ªÃÅ
-	void Open();//µçÌİÃÅ´ò¿ª
-	bool JudgeOut();//ÅĞ¶Ï³Ë¿Í³öÈ¥
-	void OUT();//³Ë¿Í³öÈ¥
-	bool JudgeIn();//ÅĞ¶Ï³Ë¿Í½øÈë
-	void IN();//³Ë¿Í½øÈë
-	void Close();//¹ØÃÅ
-	void MoveUp();//ÏòÉÏÒÆ¶¯
-	void MoveDown();//ÏòÏÂÒÆ¶¯
-	void JudgeClose();//40tÊ±¼äÀ´ÅĞ¶ÏÊÇ·ñ¹ØÃÅ
-	void MoveDirction(const int floor1);//ÓÃÀ´¸Ä±äµçÌİµÄ×´Ì¬
-	void JudgeGiveUp(int waittime);//ÅĞ¶ÏÊÇ·ñÓĞÈË·ÅÆú£¬ÓÃÔÚº¯Êı×î¿ªÊ¼
+	void addpassenger(const passenger& x);//æ·»åŠ ä¹˜å®¢
+	bool NoPassenger();//åˆ¤æ–­æ˜¯å¦æœ‰ä¹˜å®¢è¯·æ±‚
+	void JudgeDirction();//åˆ¤æ–­ç”µæ¢¯è¡Œèµ°æ–¹å‘
+	bool JudgeOpen();//åˆ¤æ–­æ˜¯å¦å¼€é—¨
+	void Open();//ç”µæ¢¯é—¨æ‰“å¼€
+	bool JudgeOut();//åˆ¤æ–­ä¹˜å®¢å‡ºå»
+	void OUT();//ä¹˜å®¢å‡ºå»
+	bool JudgeIn();//åˆ¤æ–­ä¹˜å®¢è¿›å…¥
+	void IN();//ä¹˜å®¢è¿›å…¥
+	void Close();//å…³é—¨
+	void MoveUp();//å‘ä¸Šç§»åŠ¨
+	void MoveDown();//å‘ä¸‹ç§»åŠ¨
+	void JudgeClose();//40tæ—¶é—´æ¥åˆ¤æ–­æ˜¯å¦å…³é—¨
+	void MoveDirction(const int floor1);//ç”¨æ¥æ”¹å˜ç”µæ¢¯çš„çŠ¶æ€
+	void JudgeGiveUp(int waittime);//åˆ¤æ–­æ˜¯å¦æœ‰äººæ”¾å¼ƒï¼Œç”¨åœ¨å‡½æ•°æœ€å¼€å§‹
 };
 
 state elevator::getnowState()const {
@@ -93,13 +93,13 @@ void elevator::setDir(int num) {
 }
 void elevator::addpassenger(const passenger& x) {
 	append(x);
-	cout << " µÚ" << x.getID() << "Ãû³Ë¿Í½øÈëµÈ´ı¶ÓÁĞ ";
+	cout << " ç¬¬" << x.getID() << "åä¹˜å®¢è¿›å…¥ç­‰å¾…é˜Ÿåˆ— ";
 }
 bool elevator::NoPassenger() {
-	//ÓÃÓÚÅĞ¶ÏµçÌİÊÇ·ñ½ÓÊÕ³Ë¿ÍµÄÇëÇó
+	//ç”¨äºåˆ¤æ–­ç”µæ¢¯æ˜¯å¦æ¥æ”¶ä¹˜å®¢çš„è¯·æ±‚
 	if (getnowState() == Waiting) {
 		if (holdtime == 300 && floor != 2) {
-			//Èç¹ûµÈ¹»ÁË300t²¢ÇÒ²»ÔÚ1Â¥µÄ»°£¬¿ªÊ¼ÏÂĞĞ
+			//å¦‚æœç­‰å¤Ÿäº†300tå¹¶ä¸”ä¸åœ¨1æ¥¼çš„è¯ï¼Œå¼€å§‹ä¸‹è¡Œ
 			if (floor > 2) {
 				setnowState(Down);
 				setDir(0);
@@ -114,13 +114,13 @@ bool elevator::NoPassenger() {
 			return true;
 		}
 		else if (holdtime == 300 && floor == 2) {
-			//Èç¹ûµçÌİ±¾ÉíÔÚÒ»Â¥Ôò²»ĞèÒª½øĞĞ²Ù×÷
-			cout << "µçÌİ¿ÕÏĞÎŞÈË£¬ÕıÔÚµÈ´ı";
+			//å¦‚æœç”µæ¢¯æœ¬èº«åœ¨ä¸€æ¥¼åˆ™ä¸éœ€è¦è¿›è¡Œæ“ä½œ
+			cout << "ç”µæ¢¯ç©ºé—²æ— äººï¼Œæ­£åœ¨ç­‰å¾…";
 			holdtime = 0;
 			return true;
 		}
 		else if (All == 0 && empty() == true) {
-			cout << "µçÌİ¿ÕÏĞÎŞÈË£¬ÕıÔÚµÈ´ı";
+			cout << "ç”µæ¢¯ç©ºé—²æ— äººï¼Œæ­£åœ¨ç­‰å¾…";
 			holdtime++;
 			return true;
 		}
@@ -136,10 +136,10 @@ bool elevator::NoPassenger() {
 }
 
 void elevator::JudgeDirction() {
-	//Ê¹ÓÃ¸Ãº¯Êı½øĞĞÅĞ¶ÏµçÌİµÄ×ßÏò
-	near = floor;//³õÊ¼»¯nearµÄÖµ£¬Îª·ÀÖ¹²»Âú×ãÌõ¼şµÄÇé¿ö³öÏÖÊ±ÒÀ¾É¿ÉÒÔÊ¹ÓÃMoveDirctionº¯Êı
-	int upoutfar = 0, downoutfar = 10;//¶¨Òå2¸ö¼ÇÂ¼ÉÏÏÂ³öÈ¥×îÔ¶ÇëÇóµÄ±äÁ¿
-	int upinfar = 0, downinfar = 10;//¶¨Òå2¸ö¼ÇÂ¼ÉÏÏÂ½øÀ´×îÔ¶ÇëÇóµÄ±äÁ¿
+	//ä½¿ç”¨è¯¥å‡½æ•°è¿›è¡Œåˆ¤æ–­ç”µæ¢¯çš„èµ°å‘
+	near = floor;//åˆå§‹åŒ–nearçš„å€¼ï¼Œä¸ºé˜²æ­¢ä¸æ»¡è¶³æ¡ä»¶çš„æƒ…å†µå‡ºç°æ—¶ä¾æ—§å¯ä»¥ä½¿ç”¨MoveDirctionå‡½æ•°
+	int upoutfar = 0, downoutfar = 10;//å®šä¹‰2ä¸ªè®°å½•ä¸Šä¸‹å‡ºå»æœ€è¿œè¯·æ±‚çš„å˜é‡
+	int upinfar = 0, downinfar = 10;//å®šä¹‰2ä¸ªè®°å½•ä¸Šä¸‹è¿›æ¥æœ€è¿œè¯·æ±‚çš„å˜é‡
 	if (State == Closed) {
 		if (getAll() == 0 && empty() == true) {
 			setnowState(Waiting);
@@ -151,8 +151,8 @@ void elevator::JudgeDirction() {
 		if (floor == 5) {
 			setnowState(Down); setDir(0);
 		}
-		if (getAll() != 0) {//µçÌİÀïÒÀ¾ÉÓĞÈË
-			//´ËÊ±ĞèÒªÇø·ÖµçÌİµÄÔËĞĞ·½Ïò£¬·ÖÁ½ÖÖÇé¿öÀ´´¦Àí£¨Ä¿Ç°»¹Î´´¦Àí£©
+		if (getAll() != 0) {//ç”µæ¢¯é‡Œä¾æ—§æœ‰äºº
+			//æ­¤æ—¶éœ€è¦åŒºåˆ†ç”µæ¢¯çš„è¿è¡Œæ–¹å‘ï¼Œåˆ†ä¸¤ç§æƒ…å†µæ¥å¤„ç†ï¼ˆç›®å‰è¿˜æœªå¤„ç†ï¼‰
 			for (int i = 1; i < 10; i++) {
 				if (DiantiLi[i] != 0) {
 					near = i;
@@ -171,14 +171,14 @@ void elevator::JudgeDirction() {
 				}
 			}
 		}
-		if (empty() == false) {//µçÌİÍâµÈ´ıµÄÈË²»Îª¿Õ
+		if (empty() == false) {//ç”µæ¢¯å¤–ç­‰å¾…çš„äººä¸ä¸ºç©º
 			PNODE ptemp = p_head->next;
 			while (ptemp != NULL) {
-				if (getDir() == 1) {//Ö»½ÓÉÏĞĞ³Ë¿Í
-					if (ptemp->data.getnowfloor() > floor) {//³Ë¿ÍËù´¦Â¥²ãÔÚµçÌİÂ¥²ãÉÏ£¬ÕâÑù²ÅÓĞ¿ÉÄÜµçÌİÇ°Íù½ÓÈË
-						//¿ªÊ¼¼ìË÷ÔÚÁ´±íÖĞµÄ³Ë¿Í£¬²¢ÇÒ½øĞĞÅĞ¶ÏÊÇ·ñÓĞÒªÉÏĞĞµÄ
+				if (getDir() == 1) {//åªæ¥ä¸Šè¡Œä¹˜å®¢
+					if (ptemp->data.getnowfloor() > floor) {//ä¹˜å®¢æ‰€å¤„æ¥¼å±‚åœ¨ç”µæ¢¯æ¥¼å±‚ä¸Šï¼Œè¿™æ ·æ‰æœ‰å¯èƒ½ç”µæ¢¯å‰å¾€æ¥äºº
+						//å¼€å§‹æ£€ç´¢åœ¨é“¾è¡¨ä¸­çš„ä¹˜å®¢ï¼Œå¹¶ä¸”è¿›è¡Œåˆ¤æ–­æ˜¯å¦æœ‰è¦ä¸Šè¡Œçš„
 						if (ptemp->data.getgofloor() > ptemp->data.getnowfloor()) {
-							//´ú±í´ËÈËÊÇÉÏĞĞ£¬²¢ÇÒÊÇÔÚµçÌİÔËĞĞ·½ÏòµÄÂ¥ÉÏ£¬ĞèÒªÇ°Íù½ÓÈË
+							//ä»£è¡¨æ­¤äººæ˜¯ä¸Šè¡Œï¼Œå¹¶ä¸”æ˜¯åœ¨ç”µæ¢¯è¿è¡Œæ–¹å‘çš„æ¥¼ä¸Šï¼Œéœ€è¦å‰å¾€æ¥äºº
 							if (ptemp->data.getgofloor() > upoutfar)upoutfar = ptemp->data.getgofloor();
 						}
 						if (ptemp->data.getgofloor() < ptemp->data.getnowfloor()) {
@@ -190,11 +190,11 @@ void elevator::JudgeDirction() {
 					else near = upinfar;
 				}
 
-				else if (getDir() == 0) {//Ö»½ÓÏÂĞĞ³Ë¿Í
-					if (ptemp->data.getnowfloor() < floor) {//³Ë¿ÍËù´¦Â¥²ãÔÚµçÌİÂ¥²ãÏÂ£¬ÕâÑù²ÅÓĞ¿ÉÄÜµçÌİÇ°Íù½ÓÈË
-								//¿ªÊ¼¼ìË÷ÔÚÁ´±íÖĞµÄ³Ë¿Í£¬²¢ÇÒ½øĞĞÅĞ¶ÏÊÇ·ñÓĞÒªÏÂĞĞµÄ
+				else if (getDir() == 0) {//åªæ¥ä¸‹è¡Œä¹˜å®¢
+					if (ptemp->data.getnowfloor() < floor) {//ä¹˜å®¢æ‰€å¤„æ¥¼å±‚åœ¨ç”µæ¢¯æ¥¼å±‚ä¸‹ï¼Œè¿™æ ·æ‰æœ‰å¯èƒ½ç”µæ¢¯å‰å¾€æ¥äºº
+								//å¼€å§‹æ£€ç´¢åœ¨é“¾è¡¨ä¸­çš„ä¹˜å®¢ï¼Œå¹¶ä¸”è¿›è¡Œåˆ¤æ–­æ˜¯å¦æœ‰è¦ä¸‹è¡Œçš„
 						if (ptemp->data.getgofloor() < ptemp->data.getnowfloor()) {
-							//´ú±í´ËÈËÊÇÏÂĞĞ£¬²¢ÇÒÊÇÔÚµçÌİÔËĞĞ·½ÏòµÄÂ¥ÏÂ£¬ĞèÒªÇ°Íù½ÓÈË
+							//ä»£è¡¨æ­¤äººæ˜¯ä¸‹è¡Œï¼Œå¹¶ä¸”æ˜¯åœ¨ç”µæ¢¯è¿è¡Œæ–¹å‘çš„æ¥¼ä¸‹ï¼Œéœ€è¦å‰å¾€æ¥äºº
 							if (ptemp->data.getgofloor() < downoutfar)downoutfar = ptemp->data.getgofloor();
 						}
 						if (ptemp->data.getgofloor() > ptemp->data.getnowfloor()) {
@@ -214,9 +214,9 @@ void elevator::JudgeDirction() {
 		PNODE ptemp = p_head->next;
 		int time_now = 0;
 		while (ptemp != NULL) {
-			int Time_now = ptemp->data.getwhenwait();//ÓÃÓÚ¼ÇÂ¼×îÏÈ°´µÄÈË
+			int Time_now = ptemp->data.getwhenwait();//ç”¨äºè®°å½•æœ€å…ˆæŒ‰çš„äºº
 			time_now = Time_now;
-			if (ptemp->data.getwhenwait() < time_now) {//ÌôÑ¡³ö×îÏÈ°´¼üµÄÈË£¬È»ºó½øĞĞ¸Ä±äµçÌİµÄ·½Ïò
+			if (ptemp->data.getwhenwait() < time_now) {//æŒ‘é€‰å‡ºæœ€å…ˆæŒ‰é”®çš„äººï¼Œç„¶åè¿›è¡Œæ”¹å˜ç”µæ¢¯çš„æ–¹å‘
 				time_now = ptemp->data.getwhenwait();
 			}
 			ptemp = ptemp->next;
@@ -226,7 +226,7 @@ void elevator::JudgeDirction() {
 			int up(floor), down(floor);
 			if (ptemp->data.getwhenwait() == time_now) {
 				int x = ptemp->data.getgofloor() - ptemp->data.getnowfloor();
-				//´ËÊ±»á³öÏÖ4ÖÖÇé¿ö£¬²¢ÇÒÖ»»áÓĞ2ÖÖÊÇµçÌİÉÏĞĞ£¬2ÖÖÊÇµçÌİÏÂĞĞ
+				//æ­¤æ—¶ä¼šå‡ºç°4ç§æƒ…å†µï¼Œå¹¶ä¸”åªä¼šæœ‰2ç§æ˜¯ç”µæ¢¯ä¸Šè¡Œï¼Œ2ç§æ˜¯ç”µæ¢¯ä¸‹è¡Œ
 				if ((x > 0 && (ptemp->data.getnowfloor() > floor)) || (x < 0 && (ptemp->data.getnowfloor() > floor))) {
 					setnowState(Up);
 					setDir(1);
@@ -243,13 +243,13 @@ void elevator::JudgeDirction() {
 						down = downinfar;
 					}
 				}
-				if (down != floor && up != floor) {//µ±ÉÏÏÂÍ¬Ê±ÓĞÈËÇëÇóÊ±£¬Âú×ãÏÈÉÏµÄÔ­Ôò
+				if (down != floor && up != floor) {//å½“ä¸Šä¸‹åŒæ—¶æœ‰äººè¯·æ±‚æ—¶ï¼Œæ»¡è¶³å…ˆä¸Šçš„åŸåˆ™
 					setnowState(Up); near = upinfar; setDir(1);
 				}
-				else if (up != floor) {//Ö»ÓĞÉÏĞĞµÄÇëÇó
+				else if (up != floor) {//åªæœ‰ä¸Šè¡Œçš„è¯·æ±‚
 					setnowState(Up); near = upinfar; setDir(1);
 				}
-				else if (down != floor) {//Ö»ÓĞÏÂĞĞµÄÇëÇó
+				else if (down != floor) {//åªæœ‰ä¸‹è¡Œçš„è¯·æ±‚
 					setnowState(Down); near = downinfar; setDir(0);
 				}
 				if (floor == 1) { setnowState(Up); setDir(1); }
@@ -259,7 +259,7 @@ void elevator::JudgeDirction() {
 		if (near == floor)  Open();
 	}
 	if (State == Up) {
-		if (getAll() != 0) {//µçÌİÀïÓĞÈË
+		if (getAll() != 0) {//ç”µæ¢¯é‡Œæœ‰äºº
 			for (int i = 1; i < 10; i++) {
 				if (DiantiLi[i] != 0) {
 					if (i >= near) {
@@ -288,7 +288,7 @@ void elevator::JudgeDirction() {
 	}
 	if (State == Down) {
 		//downinfar = 10, downoutfar = 10;
-		if (getAll() != 0) {//µçÌİÀïÓĞÈË
+		if (getAll() != 0) {//ç”µæ¢¯é‡Œæœ‰äºº
 			for (int i = 1; i < 10; i++) {
 				if (DiantiLi[i] != 0) {
 					if (i <= near) {
@@ -319,7 +319,7 @@ void elevator::JudgeDirction() {
 	MoveDirction(near);
 }
 
-bool elevator::JudgeOpen() {//ÅĞ¶Ï´ËÂ¥²ãÊÇ·ñÓĞÈËĞèÒª½ø³ö
+bool elevator::JudgeOpen() {//åˆ¤æ–­æ­¤æ¥¼å±‚æ˜¯å¦æœ‰äººéœ€è¦è¿›å‡º
 	if (JudgeIn() || JudgeOut()) {
 		Open();
 		return true;
@@ -335,12 +335,12 @@ void elevator::Open() {
 	}
 	if (record < open) {
 		record++;
-		cout << "µçÌİ¿ªÃÅÖĞ";
+		cout << "ç”µæ¢¯å¼€é—¨ä¸­";
 		return;
 	}
-	else {//¿ªÃÅÍê³Éºó
+	else {//å¼€é—¨å®Œæˆå
 		record = 0;
-		cout << "¿ªÃÅÍê³É";
+		cout << "å¼€é—¨å®Œæˆ";
 		setnowState(Opened);
 		if (JudgeOut())OUT();
 		if (JudgeIn())IN();
@@ -360,9 +360,9 @@ void elevator::OUT() {
 	if (record < out) {
 		if (getnowState() == Opened) {
 			record++;
-			cout << "³Ë¿ÍÕıÔÚÏÂµçÌİ";
+			cout << "ä¹˜å®¢æ­£åœ¨ä¸‹ç”µæ¢¯";
 			if (DiantiLi[floor] != 0) {
-				cout << "ÔÚ¸Ã²ãÒ»¹²ÏÂÈ¥" << DiantiLi[floor] << "¸öÈË";
+				cout << "åœ¨è¯¥å±‚ä¸€å…±ä¸‹å»" << DiantiLi[floor] << "ä¸ªäºº";
 				setAll(-DiantiLi[floor]);
 				DiantiLi[floor] = 0;
 			}
@@ -371,35 +371,35 @@ void elevator::OUT() {
 		}
 		if (getnowState() == Out) {
 			record++;
-			cout << "³Ë¿ÍÕıÔÚÏÂµçÌİ";
+			cout << "ä¹˜å®¢æ­£åœ¨ä¸‹ç”µæ¢¯";
 			return;
 		}
 	}
 	else {
-		cout << "µçÌİÀïĞèÒªÏÂµÄ³Ë¿Í¶¼ÒÑÏÂÈ¥";
+		cout << "ç”µæ¢¯é‡Œéœ€è¦ä¸‹çš„ä¹˜å®¢éƒ½å·²ä¸‹å»";
 		record = 0;
 		setnowState(Opened);
 	}
 }
 
-bool elevator::JudgeIn() {//Èç¹ûµçÌİÎ´Âú£¬Ôò·µ»Øtrue£¬¿ÉÒÔ¼ÌĞø½øÈË
-	//Ä¿Ç°ĞèÒªÍêÉÆ£¬ÒòÎªÊÇÏÈ°ÑÈËÉ¾³ıÊäÈë½øÊı×é£¬ËùÒÔĞèÒª½øĞĞÓĞ¸öÅĞ¶Ï
+bool elevator::JudgeIn() {//å¦‚æœç”µæ¢¯æœªæ»¡ï¼Œåˆ™è¿”å›trueï¼Œå¯ä»¥ç»§ç»­è¿›äºº
+	//ç›®å‰éœ€è¦å®Œå–„ï¼Œå› ä¸ºæ˜¯å…ˆæŠŠäººåˆ é™¤è¾“å…¥è¿›æ•°ç»„ï¼Œæ‰€ä»¥éœ€è¦è¿›è¡Œæœ‰ä¸ªåˆ¤æ–­
 	if (getAll() != 13) {
-		if (!empty()) {//²»Îª¿ÕÔòÖ´ĞĞifÓï¾ä
+		if (!empty()) {//ä¸ä¸ºç©ºåˆ™æ‰§è¡Œifè¯­å¥
 			PNODE ptemp = p_head->next; int upnum1 = 0, downnum1 = 0;
 			while (ptemp != NULL) {
 				if (ptemp->data.getnowfloor() == floor) {
 					if ((ptemp->data.getnowfloor() < ptemp->data.getgofloor()) && (getDir() > 0)) {
-						//³Ë¿ÍÊÇÍùÉÏ×ßµÄ
+						//ä¹˜å®¢æ˜¯å¾€ä¸Šèµ°çš„
 						return true;
 					}
 					if ((ptemp->data.getnowfloor() > ptemp->data.getgofloor()) && (getDir() == 0)) {
-						//³Ë¿ÍÏÂĞĞ
+						//ä¹˜å®¢ä¸‹è¡Œ
 						return true;
 					}
 					if (near == ptemp->data.getnowfloor()) {
-						//´ïµ½ÁË×î´óÇëÇóÂ¥²ã£¬Èç¹ûÊÇÓëµçÌİ·½ÏòÍ¬Ïò£¬Ôò²»¸Ä±ä·½Ïò£¬²¢ÇÒÔÊĞí½øÈë
-						//Èç¹û²»ÓëµçÌİÍ¬Ïò£¬Ôò¸Ä±ä·½Ïò£¬Èç¹ûÁ½¸öÇé¿ö¶¼ÓĞ£¬¾ÍÓÅÏÈÂú×ãÍ¬·½ÏòµÄ
+						//è¾¾åˆ°äº†æœ€å¤§è¯·æ±‚æ¥¼å±‚ï¼Œå¦‚æœæ˜¯ä¸ç”µæ¢¯æ–¹å‘åŒå‘ï¼Œåˆ™ä¸æ”¹å˜æ–¹å‘ï¼Œå¹¶ä¸”å…è®¸è¿›å…¥
+						//å¦‚æœä¸ä¸ç”µæ¢¯åŒå‘ï¼Œåˆ™æ”¹å˜æ–¹å‘ï¼Œå¦‚æœä¸¤ä¸ªæƒ…å†µéƒ½æœ‰ï¼Œå°±ä¼˜å…ˆæ»¡è¶³åŒæ–¹å‘çš„
 						if (getDir() == 1||getDir()==-1) {
 							if (ptemp->data.getnowfloor() < ptemp->data.getgofloor()) {
 								setDir(1); upnum1++;
@@ -436,10 +436,10 @@ void elevator::IN() {
 				record++;
 				PNODE ptemp = p_head->next;
 				while (ptemp != NULL) {
-					if (ptemp->data.getnowfloor() == floor) {//Ê×ÏÈÈËµÃÔÚµçÌİÂ¥²ã£¬Õâ²ÅÄÜ½øĞĞÅĞ¶¨
+					if (ptemp->data.getnowfloor() == floor) {//é¦–å…ˆäººå¾—åœ¨ç”µæ¢¯æ¥¼å±‚ï¼Œè¿™æ‰èƒ½è¿›è¡Œåˆ¤å®š
 						if ((ptemp->data.getnowfloor() < ptemp->data.getgofloor()) && (getDir() > 0)) {
-							//³Ë¿ÍÊÇÍùÉÏ×ßµÄ
-							cout << "µÚ" << ptemp->data.getID() << "¸ö³Ë¿ÍÕıÔÚ½øÈëµçÌİ";
+							//ä¹˜å®¢æ˜¯å¾€ä¸Šèµ°çš„
+							cout << "ç¬¬" << ptemp->data.getID() << "ä¸ªä¹˜å®¢æ­£åœ¨è¿›å…¥ç”µæ¢¯";
 							DiantiLi[ptemp->data.getgofloor()] += 1;
 							setAll(1);
 							Remove(ptemp->data.getID());
@@ -447,8 +447,8 @@ void elevator::IN() {
 							return;
 						}
 						if ((ptemp->data.getnowfloor() > ptemp->data.getgofloor()) && (getDir() == 0)) {
-							//³Ë¿ÍÏÂĞĞ
-							cout << "µÚ" << ptemp->data.getID() << "¸ö³Ë¿ÍÕıÔÚ½øÈëµçÌİ";
+							//ä¹˜å®¢ä¸‹è¡Œ
+							cout << "ç¬¬" << ptemp->data.getID() << "ä¸ªä¹˜å®¢æ­£åœ¨è¿›å…¥ç”µæ¢¯";
 							DiantiLi[ptemp->data.getgofloor()] += 1;
 							setAll(1);
 							Remove(ptemp->data.getID());
@@ -461,18 +461,18 @@ void elevator::IN() {
 			}
 			if (getnowState() == In) {
 				record++;
-				cout << "³Ë¿ÍÕıÔÚ½øÈëµçÌİ";
+				cout << "ä¹˜å®¢æ­£åœ¨è¿›å…¥ç”µæ¢¯";
 				return;
 			}
 		}
 		else {
-			cout << "³Ë¿ÍÒÑ¾­½øÈëµçÌİ";
+			cout << "ä¹˜å®¢å·²ç»è¿›å…¥ç”µæ¢¯";
 			record = 0;
 			setnowState(Opened);
 		}
 	}
 	else {
-		cout << "µçÌİÄÚÈËÊıÒÑ¾­´ïµ½×î´óÖµ";
+		cout << "ç”µæ¢¯å†…äººæ•°å·²ç»è¾¾åˆ°æœ€å¤§å€¼";
 		setnowState(Closing);
 	}
 }
@@ -481,34 +481,34 @@ void elevator::Close() {
 	if (record < close) {
 		record++;
 		setnowState(Closing);
-		cout << "µçÌİÕıÔÚ¹ØÃÅÖĞ";
+		cout << "ç”µæ¢¯æ­£åœ¨å…³é—¨ä¸­";
 	}
 	else {
 		record = 0;
-		cout << "µçÌİÒÑ¾­¹ØÃÅ";
+		cout << "ç”µæ¢¯å·²ç»å…³é—¨";
 		setnowState(Closed);
-		if (near == floor) {//µçÌİÒÑ¾­µ½´ï×î´óÇëÇóÂ¥²ã£¬¿ÉÄÜ»á³öÏÖ4ÖÖÇé¿ö
-			if (empty() == false || getAll() != 0) {//µÈ´ı¶ÓÁĞÓĞÈË»òµçÌİÀïÒ²ÓĞÈË
+		if (near == floor) {//ç”µæ¢¯å·²ç»åˆ°è¾¾æœ€å¤§è¯·æ±‚æ¥¼å±‚ï¼Œå¯èƒ½ä¼šå‡ºç°4ç§æƒ…å†µ
+			if (empty() == false || getAll() != 0) {//ç­‰å¾…é˜Ÿåˆ—æœ‰äººæˆ–ç”µæ¢¯é‡Œä¹Ÿæœ‰äºº
 				PNODE ptemp = p_head->next; int OutPeople = 0;
 				while (ptemp != NULL) {
 					if (ptemp->data.getnowfloor() == floor)OutPeople += 1;
-					if (getAll() != 0 && OutPeople != 0) {//µçÌİÀïÓĞÈË£¬ÍâÃæÓĞÈË       ÅĞ¶ÏÈ¥µÄ·½Ïò
-						if (getDir() == 1 && (ptemp->data.getgofloor() > floor)) {//µçÌİÉÏĞĞ£¬³Ë¿ÍÉÏĞĞ£¬¿ªÃÅ
+					if (getAll() != 0 && OutPeople != 0) {//ç”µæ¢¯é‡Œæœ‰äººï¼Œå¤–é¢æœ‰äºº       åˆ¤æ–­å»çš„æ–¹å‘
+						if (getDir() == 1 && (ptemp->data.getgofloor() > floor)) {//ç”µæ¢¯ä¸Šè¡Œï¼Œä¹˜å®¢ä¸Šè¡Œï¼Œå¼€é—¨
 							setnowState(Opening);
 						}
-						else if (getDir() == 0 && (ptemp->data.getgofloor() < floor)) {//µçÌİÏÂĞĞ£¬³Ë¿ÍÏÂĞĞ£¬¿ªÃÅ
+						else if (getDir() == 0 && (ptemp->data.getgofloor() < floor)) {//ç”µæ¢¯ä¸‹è¡Œï¼Œä¹˜å®¢ä¸‹è¡Œï¼Œå¼€é—¨
 							setnowState(Opening);
 						}
 					}
-					if (getAll() == 0 && OutPeople != 0) {//µçÌİÃ»ÈË£¬ÍâÃæÓĞÈË
-						if (getDir() == 1) {//µçÌİÉÏĞĞ
+					if (getAll() == 0 && OutPeople != 0) {//ç”µæ¢¯æ²¡äººï¼Œå¤–é¢æœ‰äºº
+						if (getDir() == 1) {//ç”µæ¢¯ä¸Šè¡Œ
 							if (ptemp->data.getgofloor() > floor)
 								setnowState(Opening);
 							else if (ptemp->data.getgofloor() < floor) {
 								setDir(0); setnowState(Opening);
 							}
 						}
-						if (getDir() == 0) {//µçÌİÏÂĞĞ
+						if (getDir() == 0) {//ç”µæ¢¯ä¸‹è¡Œ
 							if (ptemp->data.getgofloor() < floor)
 								setnowState(Opening);
 							else if (ptemp->data.getgofloor() > floor) {
@@ -517,7 +517,7 @@ void elevator::Close() {
 						}
 					}
 					if (getAll() != 0 && OutPeople == 0) {
-						//µçÌİÀïÓĞÈË£¬ÍâÃæÃ»ÈË£¬´ËÊ±Ó¦¸Ã·ÖÊÇ·ñ¼ÌĞøËÍ³Ë¿ÍÉÏĞĞ»òÕßÏÂĞĞ£¬Ê×ÏÈ±éÀúÊı×éµÃµ½³Ë¿ÍÒªÈ¥¼¸²ã
+						//ç”µæ¢¯é‡Œæœ‰äººï¼Œå¤–é¢æ²¡äººï¼Œæ­¤æ—¶åº”è¯¥åˆ†æ˜¯å¦ç»§ç»­é€ä¹˜å®¢ä¸Šè¡Œæˆ–è€…ä¸‹è¡Œï¼Œé¦–å…ˆéå†æ•°ç»„å¾—åˆ°ä¹˜å®¢è¦å»å‡ å±‚
 						for (int i = 1; i < 10; i++) {
 							if (DiantiLi[i] != 0) {
 								if (i < floor) { setnowState(Down); setDir(0); }
@@ -529,7 +529,7 @@ void elevator::Close() {
 					ptemp = ptemp->next;
 				}
 			}
-			else if (empty() == true && getAll() == 0) {//µÈ´ı¶ÓÁĞÃ»ÈË£¬µçÌİÒ²Ã»ÈË
+			else if (empty() == true && getAll() == 0) {//ç­‰å¾…é˜Ÿåˆ—æ²¡äººï¼Œç”µæ¢¯ä¹Ÿæ²¡äºº
 				setnowState(Waiting); setDir(-1);
 			}
 		}
@@ -548,7 +548,7 @@ void elevator::Close() {
 void elevator::MoveUp() {
 	if (record < up) {
 		record++;
-		cout << "µçÌİÕıÔÚÉÏÂ¥";
+		cout << "ç”µæ¢¯æ­£åœ¨ä¸Šæ¥¼";
 		return;
 	}
 	else {
@@ -557,7 +557,7 @@ void elevator::MoveUp() {
 		if (JudgeOpen() == false)
 			MoveUp();
 		else {
-			cout << "µçÌİÕıÔÚÉÏÂ¥";
+			cout << "ç”µæ¢¯æ­£åœ¨ä¸Šæ¥¼";
 			setnowState(Opening);
 		}
 	}
@@ -567,7 +567,7 @@ void elevator::MoveUp() {
 void elevator::MoveDown() {
 	if (record < down) {
 		record++;
-		cout << "µçÌİÕıÔÚÏÂÂ¥";
+		cout << "ç”µæ¢¯æ­£åœ¨ä¸‹æ¥¼";
 		return;
 	}
 	else {
@@ -575,7 +575,7 @@ void elevator::MoveDown() {
 		record = 0;
 		if (JudgeOpen() == false)MoveDown();
 		else {
-			cout << "µçÌİÕıÔÚÏÂÂ¥";
+			cout << "ç”µæ¢¯æ­£åœ¨ä¸‹æ¥¼";
 			setnowState(Opening);
 		}
 	}
@@ -585,17 +585,17 @@ void elevator::JudgeClose() {
 	if (getnowState() == Opened) {
 		if (record < test) {
 			record++;
-			cout << "ÕıÔÚ¹ØÃÅ¼ì²â";
+			cout << "æ­£åœ¨å…³é—¨æ£€æµ‹";
 			return;
 		}
 		else {
-			cout << "¹ØÃÅ¼ì²â½áÊø";
+			cout << "å…³é—¨æ£€æµ‹ç»“æŸ";
 			if (getnowState() == Opened) {
 				record = 0;
 				Close();
 				return;
 			}
-			/*else {//ÒÉËÆ¿ÉÒÔÉ¾³ı    
+			/*else {//ç–‘ä¼¼å¯ä»¥åˆ é™¤    
 				record = 0;
 				return;
 			}*/
@@ -605,7 +605,7 @@ void elevator::JudgeClose() {
 }
 
 void elevator::MoveDirction(const int near) {
-	//nearÎª³Ë¿ÍµÄÇëÇó×îÔ¶µÄÂ¥²ã
+	//nearä¸ºä¹˜å®¢çš„è¯·æ±‚æœ€è¿œçš„æ¥¼å±‚
 	if (near < floor) {
 		setnowState(Down);
 		setDir(0);
@@ -655,12 +655,12 @@ void elevator::MoveDirction(const int near) {
 }
 
 void elevator::JudgeGiveUp(int waittime) {
-	//Ò»½øÈëÏµÍ³ÔòÏÈÅĞ¶Ï¸ÃÊ±¿ÌÊÇ·ñÓĞÈË·ÅÆú
-	//waittimeÎªÏÖÔÚµÄÊ±¼ä£¬ÓÃÓÚºÍ³Ë¿ÍµÈ´ıµÄÊ±¼ä+waitÀ´½øĞĞÅĞ¶Ï³Ë¿ÍÊÇ·ñ·ÅÆú
+	//ä¸€è¿›å…¥ç³»ç»Ÿåˆ™å…ˆåˆ¤æ–­è¯¥æ—¶åˆ»æ˜¯å¦æœ‰äººæ”¾å¼ƒ
+	//waittimeä¸ºç°åœ¨çš„æ—¶é—´ï¼Œç”¨äºå’Œä¹˜å®¢ç­‰å¾…çš„æ—¶é—´+waitæ¥è¿›è¡Œåˆ¤æ–­ä¹˜å®¢æ˜¯å¦æ”¾å¼ƒ
 	PNODE ptemp = p_head->next;
 	while (ptemp != NULL) {
 		if ((ptemp->data.getwhenwait() + peoplewait) <= waittime) {
-			cout << "µÚ" << ptemp->data.getID() << "Ãû³Ë¿ÍÒÑ·ÅÆúµÈ´ı  ";
+			cout << "ç¬¬" << ptemp->data.getID() << "åä¹˜å®¢å·²æ”¾å¼ƒç­‰å¾…  ";
 			Remove(ptemp->data.getID());
 		}
 		ptemp = ptemp->next;
