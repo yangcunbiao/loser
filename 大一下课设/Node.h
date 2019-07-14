@@ -9,10 +9,10 @@ typedef struct node {
 	struct node* next;
 }NODE, * PNODE;
 
-NODE head;//Í·½Úµã
+NODE head;//å¤´èŠ‚ç‚¹
 
-PNODE p_head = &head;//Í·Ö¸Õë
-PNODE p_tail = &head;//Î²Ö¸Õë
+PNODE p_head = &head;//å¤´æŒ‡é’ˆ
+PNODE p_tail = &head;//å°¾æŒ‡é’ˆ
 
 void append(passenger data) {
 	PNODE pnew = (PNODE)malloc(sizeof(NODE));
@@ -32,16 +32,16 @@ bool empty() {
 	else return false;
 }
 
-void Remove(int ID) {//dataÎª½ÚµãËù´æ´¢µÄÊý¾Ý£¬²éµ½¾ÍÉ¾³ý
+void Remove(int ID) {//dataä¸ºèŠ‚ç‚¹æ‰€å­˜å‚¨çš„æ•°æ®ï¼ŒæŸ¥åˆ°å°±åˆ é™¤
 	int pnew = ID;
 	PNODE ptemp = p_head->next;
 	if (ptemp->data.getID() == pnew) {
-		if (ptemp == p_tail) {//Èç¹û¾ÍÒ»¸ö½Úµã
+		if (ptemp == p_tail) {//å¦‚æžœå°±ä¸€ä¸ªèŠ‚ç‚¹
 			p_head->next = ptemp->next;
 			p_tail = p_head;
 			ptemp = NULL;
 		}
-		else { //Èç¹ûÊÇ¶à¸ö½Úµã
+		else { //å¦‚æžœæ˜¯å¤šä¸ªèŠ‚ç‚¹
 			p_head->next = ptemp->next;
 			ptemp = NULL;
 		}
