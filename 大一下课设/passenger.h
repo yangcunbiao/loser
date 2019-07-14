@@ -31,19 +31,19 @@ passenger::passenger() {
 void passenger::setdata(int ID1) {
 	ID = ID1; int i = 1;
 	while (i) {
-		cout << "ÇëÊäÈëµÚ" << ID << "Î»³Ë¿ÍµÄÐÅÏ¢" << endl;
-		cout << "¸Ã³Ë¿ÍÄ¿Ç°ÔÚÄÄÒ»²ã£º"; cin >> nowfloor;
+		cout << "è¯·è¾“å…¥ç¬¬" << ID << "ä½ä¹˜å®¢çš„ä¿¡æ¯" << endl;
+		cout << "è¯¥ä¹˜å®¢ç›®å‰åœ¨å“ªä¸€å±‚ï¼š"; cin >> nowfloor;
 		if (nowfloor == -1) { nowfloor = 1; }
 		else { nowfloor++; }
-		cout << "¸Ã³Ë¿ÍÈ¥ÄÄÒ»²ã£º"; cin >> gofloor;
+		cout << "è¯¥ä¹˜å®¢åŽ»å“ªä¸€å±‚ï¼š"; cin >> gofloor;
 		if (gofloor == -1) { gofloor = 1; }
 		else { gofloor++; }
-		cout << "¸Ã³Ë¿ÍºÎÊ±ÉÏµçÌÝ£º"; cin >> whenwait;
+		cout << "è¯¥ä¹˜å®¢ä½•æ—¶ä¸Šç”µæ¢¯ï¼š"; cin >> whenwait;
 		if (nowfloor > 5 || nowfloor < 1) {
-			cout << "³Ë¿ÍÄ¿Ç°µÄÂ¥²ãÓÐÎó£¬ÇëÖØÊäÈë£¡" << endl;
+			cout << "ä¹˜å®¢ç›®å‰çš„æ¥¼å±‚æœ‰è¯¯ï¼Œè¯·é‡è¾“å…¥ï¼" << endl;
 		}
 		if (gofloor > 5 || gofloor < 1) {
-			cout << "³Ë¿ÍÒªÈ¥µÄÂ¥²ãÓÐÎó£¬ÇëÖØÊäÈë£¡" << endl;
+			cout << "ä¹˜å®¢è¦åŽ»çš„æ¥¼å±‚æœ‰è¯¯ï¼Œè¯·é‡è¾“å…¥ï¼" << endl;
 		}
 		else i = 0;
 	}
